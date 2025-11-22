@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Module: Difficult Conversations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .slide { display: none; animation: fadeIn 0.5s; }
+        .slide.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-white h-screen flex flex-col">
+
+    <!-- Top Bar -->
+    <div class="h-16 bg-slate-800 border-b border-slate-700 flex items-center justify-between px-6">
+        <div class="flex items-center gap-3">
+            <a href="index.html" class="text-slate-400 hover:text-white transition"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+            <div class="h-6 w-px bg-slate-600 mx-2"></div>
+            <span class="font-semibold text-teal-400">Behavioural Training Module</span>
+        </div>
+        <div class="text-sm text-slate-400">
+            Handling Difficult Conversations at Work
+        </div>
+    </div>
+
+    <!-- Slide Container -->
+    <div class="flex-1 flex items-center justify-center bg-slate-900 relative overflow-hidden p-4 md:p-8">
+        
+        <!-- Slide 1 -->
+        <div class="slide active w-full max-w-4xl aspect-video bg-gradient-to-br from-teal-900 to-slate-900 rounded-xl border border-slate-700 shadow-2xl p-12 flex-col justify-center items-center text-center relative">
+            <div class="uppercase tracking-widest text-teal-400 font-bold mb-4 text-sm">Behavioural Training Module</div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">Handling Difficult<br>Conversations at Work</h1>
+            <p class="text-xl text-slate-300 mb-8 max-w-2xl">Grounded in CBT, Emotional Regulation Research, and Experiential Learning</p>
+            <div class="flex items-center justify-center gap-3">
+                <img src="https://ui-avatars.com/api/?name=Shubhranshul+Dwivedi&background=0d9488&color=fff" class="w-10 h-10 rounded-full shadow-lg">
+                <div class="text-left">
+                    <div class="text-sm font-bold text-white">Shubhranshul Dwivedi</div>
+                    <div class="text-xs text-teal-400">Psychologist & Facilitator</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide w-full max-w-4xl aspect-video bg-white text-slate-800 rounded-xl border border-slate-200 shadow-2xl p-12 flex-col relative">
+            <div class="absolute top-8 right-12 text-teal-700 text-4xl opacity-20"><i class="fas fa-bullseye"></i></div>
+            <h2 class="text-3xl font-bold text-teal-800 mb-8 border-b border-teal-100 pb-4">Learning Objectives</h2>
+            <p class="text-lg mb-6 text-slate-600">By the end of this session, learners will be able to:</p>
+            <ul class="space-y-4 text-lg">
+                <li class="flex items-start"><i class="fas fa-check text-teal-600 mt-1.5 mr-3"></i>Identify emotional and behavioural triggers using appraisal theory</li>
+                <li class="flex items-start"><i class="fas fa-check text-teal-600 mt-1.5 mr-3"></i>Regulate reactions using CBT + mindfulness techniques</li>
+                <li class="flex items-start"><i class="fas fa-check text-teal-600 mt-1.5 mr-3"></i>Apply the C.A.L.M. Model (MI + NVC based)</li>
+                <li class="flex items-start"><i class="fas fa-check text-teal-600 mt-1.5 mr-3"></i>Use assertive communication during conflict</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide w-full max-w-4xl aspect-video bg-white text-slate-800 rounded-xl border border-slate-200 shadow-2xl p-12 flex-col relative">
+            <h2 class="text-3xl font-bold text-teal-800 mb-8 border-b border-teal-100 pb-4">Why Conversations Become Difficult</h2>
+            <div class="grid grid-cols-2 gap-8">
+                <div class="bg-slate-50 p-6 rounded-lg border-l-4 border-red-400">
+                    <h3 class="font-bold text-slate-800 mb-2">Biological & Emotional</h3>
+                    <ul class="space-y-2 text-slate-600">
+                        <li>• Perceived threat (amygdala activation)</li>
+                        <li>• High emotional load (Goleman)</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-lg border-l-4 border-blue-400">
+                    <h3 class="font-bold text-slate-800 mb-2">Cognitive</h3>
+                    <ul class="space-y-2 text-slate-600">
+                        <li>• Cognitive distortions (CBT)</li>
+                        <li>• Ambiguity + misunderstanding</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 bg-teal-900 text-white p-4 rounded-lg text-center font-medium">
+                "We respond to our interpretation — not the event itself." <br><span class="text-teal-400 text-sm">- Lazarus & Folkman</span>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide w-full max-w-4xl aspect-video bg-slate-900 text-white rounded-xl border border-slate-700 shadow-2xl p-12 flex-col justify-center items-center relative">
+            <h2 class="text-3xl font-bold text-teal-400 mb-12">The Reaction Loop</h2>
+            <div class="flex items-center gap-4 text-center w-full justify-between">
+                <div class="bg-slate-800 p-4 rounded-lg w-1/5 border border-slate-600">Trigger</div>
+                <i class="fas fa-arrow-right text-teal-500"></i>
+                <div class="bg-slate-800 p-4 rounded-lg w-1/5 border border-slate-600">Emotion</div>
+                <i class="fas fa-arrow-right text-teal-500"></i>
+                <div class="bg-slate-800 p-4 rounded-lg w-1/5 border border-slate-600">Thought</div>
+                <i class="fas fa-arrow-right text-teal-500"></i>
+                <div class="bg-red-900/50 p-4 rounded-lg w-1/5 border border-red-500/50">Reaction</div>
+            </div>
+            <p class="mt-12 text-slate-400 text-sm">Adapted from Beck’s Cognitive Model (CBT). <br> <strong class="text-white">Key: You can't control triggers, but you can control reactions.</strong></p>
+        </div>
+
+         <!-- Slide 6 -->
+         <div class="slide w-full max-w-4xl aspect-video bg-white text-slate-800 rounded-xl border border-slate-200 shadow-2xl p-12 flex-col justify-center items-center text-center relative">
+            <div class="absolute top-8 left-12 text-sm font-bold text-teal-600 uppercase tracking-wide">Technique #1</div>
+            <h2 class="text-4xl font-bold text-slate-900 mb-6">The 10-Second Pause</h2>
+            <p class="text-slate-500 mb-10">Based on Mindfulness-Based Stress Reduction (Kabat-Zinn)</p>
+            
+            <div class="flex gap-8 items-center justify-center mb-8">
+                <div class="w-32 h-32 rounded-full bg-teal-100 flex items-center justify-center text-teal-800 font-bold text-xl border-4 border-teal-500">Pause</div>
+                <i class="fas fa-chevron-right text-slate-300 text-2xl"></i>
+                <div class="w-32 h-32 rounded-full bg-blue-100 flex items-center justify-center text-blue-800 font-bold text-xl border-4 border-blue-500">Breathe</div>
+                <i class="fas fa-chevron-right text-slate-300 text-2xl"></i>
+                <div class="w-32 h-32 rounded-full bg-purple-100 flex items-center justify-center text-purple-800 font-bold text-xl border-4 border-purple-500">Label</div>
+            </div>
+            
+            <p class="text-lg font-medium text-slate-700">Benefits: Reduces emotional hijack, increases clarity.</p>
+        </div>
+
+         <!-- Slide 8 -->
+         <div class="slide w-full max-w-4xl aspect-video bg-gradient-to-br from-slate-800 to-slate-900 text-white rounded-xl border border-slate-700 shadow-2xl p-12 flex-col justify-center items-center text-center relative">
+            <div class="absolute top-8 left-12 text-sm font-bold text-teal-400 uppercase tracking-wide">Technique #2</div>
+            <h2 class="text-5xl font-bold text-white mb-12">The C.A.L.M. Model</h2>
+            
+            <div class="grid grid-cols-2 gap-6 w-full max-w-2xl text-left">
+                <div class="bg-slate-700/50 p-4 rounded border-l-4 border-teal-500">
+                    <span class="text-teal-400 font-bold text-xl mr-2">C</span> Clarify the issue
+                </div>
+                <div class="bg-slate-700/50 p-4 rounded border-l-4 border-teal-500">
+                    <span class="text-teal-400 font-bold text-xl mr-2">A</span> Acknowledge emotions
+                </div>
+                <div class="bg-slate-700/50 p-4 rounded border-l-4 border-teal-500">
+                    <span class="text-teal-400 font-bold text-xl mr-2">L</span> Listen actively
+                </div>
+                <div class="bg-slate-700/50 p-4 rounded border-l-4 border-teal-500">
+                    <span class="text-teal-400 font-bold text-xl mr-2">M</span> Move toward solutions
+                </div>
+            </div>
+             <p class="mt-10 text-slate-400 text-sm">Inspired by Motivational Interviewing & Nonviolent Communication.</p>
+        </div>
+
+        <!-- Slide 14 -->
+        <div class="slide w-full max-w-4xl aspect-video bg-teal-50 text-slate-800 rounded-xl border border-teal-200 shadow-2xl p-12 flex-col justify-center items-center text-center relative">
+            <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-6 text-teal-600 text-2xl"><i class="fas fa-users"></i></div>
+            <h2 class="text-3xl font-bold text-teal-900 mb-6">Scenario Practice</h2>
+            <div class="bg-white p-8 rounded-lg shadow-sm border border-teal-100 max-w-xl">
+                <p class="text-xl font-serif italic text-slate-600 mb-4">"Your colleague has delayed their part of a shared project twice."</p>
+            </div>
+            <p class="mt-8 text-lg font-bold text-slate-800">Prompt: How would you start this conversation using C.A.L.M.?</p>
+        </div>
+
+         <!-- Slide 20 -->
+         <div class="slide w-full max-w-4xl aspect-video bg-slate-900 text-white rounded-xl border border-slate-700 shadow-2xl p-12 flex-col justify-center items-center text-center relative">
+            <h2 class="text-4xl font-bold text-white mb-6">Thank You</h2>
+            <div class="w-20 h-1 bg-teal-500 mb-8"></div>
+            <h3 class="text-2xl font-bold text-slate-200 mb-2">Shubhranshul Dwivedi</h3>
+            <p class="text-teal-400 mb-8">Psychologist & Trainer</p>
+            
+            <div class="flex gap-6">
+                <a href="mailto:shubhranshuldwivedi@gmail.com" class="bg-slate-800 hover:bg-slate-700 px-6 py-3 rounded-lg transition">Email Me</a>
+                <a href="https://www.linkedin.com/in/shubhranshul-dwivedi/" class="bg-teal-600 hover:bg-teal-500 text-white px-6 py-3 rounded-lg transition">LinkedIn</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Controls -->
+    <div class="h-20 bg-slate-800 border-t border-slate-700 flex justify-center items-center gap-6">
+        <button onclick="prevSlide()" class="w-12 h-12 rounded-full bg-slate-700 hover:bg-slate-600 text-white flex items-center justify-center transition shadow-lg"><i class="fas fa-chevron-left"></i></button>
+        <span class="text-slate-400 font-mono" id="slideCounter">1 / 8</span>
+        <button onclick="nextSlide()" class="w-12 h-12 rounded-full bg-teal-600 hover:bg-teal-500 text-white flex items-center justify-center transition shadow-lg"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const counter = document.getElementById('slideCounter');
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) slide.classList.add('active');
+            });
+            counter.textContent = `${currentSlide + 1} / ${slides.length}`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+        
+        // Initial counter update
+        updateSlide();
+    </script>
+</body>
+</html>

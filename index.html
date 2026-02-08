@@ -1,330 +1,293 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yogeshwar Vats | PhD Scholar Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            background-color: #ffffff;
-        }
+import React from 'react';
+import { 
+  Linkedin, 
+  Award, 
+  ExternalLink,
+  ArrowUpRight,
+  ShieldCheck,
+  Zap,
+  MapPin,
+  Mail,
+  Brain
+} from 'lucide-react';
 
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-        }
+const App = () => {
+  const profile = {
+    name: "Shubhranshul Dwivedi",
+    title: "Counseling Psychologist & Clinical Operations Lead",
+    stats: [
+      { value: "500+", label: "Clinical Hours" },
+      { value: "03", label: "Research Papers" },
+      { value: "03+", label: "Years Expertise" },
+      { value: "Action", label: "Driven Outcomes" }
+    ]
+  };
 
-        .hero-text-huge {
-            font-size: clamp(5rem, 15vw, 10rem);
-            line-height: 0.9;
-            font-weight: 400;
-            letter-spacing: -0.04em;
-        }
+  const specializations = [
+    { 
+      title: "Relational Intelligence",
+      desc: "Deciphering communication patterns and rebuilding intimacy through structured behavioral intervention.",
+      color: "bg-[#dcf2ed]" // pastel-mint
+    },
+    { 
+      title: "Circadian Wellness",
+      desc: "Sleep hygiene protocols designed as the fundamental pillar for cognitive and emotional resilience.",
+      color: "bg-[#e1f0d7]" // pastel-sage
+    },
+    { 
+      title: "Indigenous Therapeutics",
+      desc: "Blending traditional Indian psychology with modern CBT for anxiety management.",
+      color: "bg-white border border-[#D1E7E0]"
+    },
+    { 
+      title: "Corporate Wellness",
+      desc: "Bespoke strategies for organizational health and executive resilience.",
+      color: "bg-[#2D6A4F] text-white"
+    }
+  ];
 
-        .card-gradient {
-            background: #ffffff;
-            transition: all 0.3s ease;
-            border: 1px solid #f1f5f9;
-        }
+  const clinicalExperience = [
+    {
+      role: "Associate Program Manager (Clinical Operations)",
+      org: "YourDost",
+      date: "2025 – Present",
+      desc: "Driving organizational growth through behavioral development and clinical strategy, while providing expert counseling to an international clientele."
+    },
+    {
+      role: "Counseling Psychologist & Consultant",
+      org: "YourDost (Skill India Project)",
+      date: "2023 – 2025",
+      desc: "Direct psychiatric management and psychological readiness assessments for candidates, focusing on resilience and career-related anxiety."
+    },
+    {
+      role: "Behavioral Health Coach",
+      org: "Fitelo",
+      date: "2022 – 2023",
+      desc: "Facilitated behavioral habit modification for clients, bridging physical health with psychological well-being."
+    }
+  ];
 
-        .card-gradient:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05);
-        }
+  const publications = [
+    {
+      title: "Addressing Anxiety Disorder through Indigenous Therapeutics: A Review",
+      details: "Dev Sanskriti Interdisciplinary International Journal, 20",
+      link: "https://doi.org/10.36018/dsiij.v20i.265",
+    },
+    {
+      title: "Emotional Need Fulfillment and Hostility of Adolescents",
+      details: "Master's Dissertation | Focus on Behavioral Patterns",
+    },
+    {
+      title: "Depression levels of video game players vs non-players",
+      details: "Bachelor's Project | Comparative Psychological Study",
+    }
+  ];
 
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 30px;
-            height: 3px;
-            background: #0d9488;
-        }
-
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 1rem;
-            position: relative;
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(transparent, rgba(15, 23, 42, 0.8));
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 1.5rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .skill-chip {
-            border: 1px solid #e2e8f0;
-            transition: all 0.2s;
-        }
-
-        .skill-chip:hover {
-            border-color: #0d9488;
-            color: #0d9488;
-        }
-        
-        .profile-img-container {
-            position: relative;
-        }
-        
-        .profile-img-container::before {
-            content: '';
-            position: absolute;
-            top: 10%;
-            right: -10%;
-            width: 100%;
-            height: 100%;
-            background: #f8fafc;
-            z-index: -1;
-            border-radius: 2rem;
-        }
-
-        /* Golden Patent Style */
-        .patent-card {
-            background: linear-gradient(135deg, #fffcf0 0%, #fff8e1 100%);
-            border: 1px solid #fde68a;
-        }
-        
-        .gold-tag {
-            background: linear-gradient(to right, #b45309, #d97706);
-            color: white;
-        }
-
-        .gold-icon {
-            color: #d97706;
-            opacity: 0.15;
-        }
-    </style>
-</head>
-<body class="text-slate-900">
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-12">
-                <span class="font-black text-xl tracking-tighter uppercase">Y.Vats</span>
-                <div class="hidden md:flex space-x-8 text-[13px] font-medium text-slate-500 uppercase tracking-widest">
-                    <a href="#about" class="hover:text-black transition">About Me</a>
-                    <a href="#publications" class="hover:text-black transition">IP & Papers</a>
-                    <a href="#research" class="hover:text-black transition">Research</a>
-                    <a href="#gallery" class="hover:text-black transition">Gallery</a>
-                </div>
-            </div>
-            <a href="mailto:yogeshwar.vats@ndsu.edu" class="text-xs font-bold uppercase border-b-2 border-black pb-1 hover:text-teal-600 hover:border-teal-600 transition">Book A Call ↗</a>
+  return (
+    <div className="bg-[#F0F9F7] text-[#1c1917] font-['Inter',sans-serif] selection:bg-[#D1E7E0] min-h-screen">
+      {/* Navigation */}
+      <nav className="fixed w-full z-50 bg-[#F0F9F7]/85 backdrop-blur-xl border-b border-[#D1E7E0]/50">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 py-6 flex justify-between items-center">
+          <div className="flex flex-col">
+            <span className="text-xl font-medium tracking-tighter uppercase">{profile.name}</span>
+            <span className="text-[9px] font-bold tracking-[0.2em] text-[#2D6A4F] uppercase mt-1 leading-none">
+              Counseling Psychologist • Corporate Wellness
+            </span>
+          </div>
+          <div className="hidden lg:flex space-x-12 text-[10px] uppercase font-semibold tracking-[0.2em] text-stone-500">
+            <a href="#about" className="hover:text-[#2D6A4F] transition">Philosophy</a>
+            <a href="#specializations" className="hover:text-[#2D6A4F] transition">Specializations</a>
+            <a href="#experience" className="hover:text-[#2D6A4F] transition">Experience</a>
+            <a href="#contact" className="hover:text-[#2D6A4F] transition">Inquiry</a>
+          </div>
+          <div className="flex items-center gap-4">
+            <a href="https://www.linkedin.com/in/shubhranshul-dwivedi-7b0b65263/" target="_blank" className="w-10 h-10 flex items-center justify-center rounded-full border border-[#D1E7E0] text-[#2D6A4F] hover:bg-[#D1E7E0] transition">
+              <Linkedin size={18} />
+            </a>
+            <a href="#contact" className="hidden sm:block text-[10px] font-bold uppercase tracking-[0.2em] bg-[#e3f6cc] text-[#1B4332] px-8 py-3 rounded-full hover:brightness-95 transition shadow-sm border border-[#D1E7E0]">
+              Book Session
+            </a>
+          </div>
         </div>
-    </nav>
+      </nav>
 
-    <!-- Hero Section -->
-    <header id="about" class="min-h-screen pt-32 pb-20 px-8 flex items-center">
-        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            <div class="relative z-10">
-                <div class="flex space-x-12 mb-12">
-                    <div>
-                        <p class="text-3xl font-light mb-1 text-slate-900">+5</p>
-                        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Research Projects</p>
-                    </div>
-                    <div>
-                        <p class="text-3xl font-light mb-1 text-slate-900">+1</p>
-                        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Patent Granted</p>
-                    </div>
-                </div>
-
-                <h1 class="hero-text-huge mb-8 text-slate-900">Hello</h1>
-                <p class="text-lg md:text-xl text-slate-500 max-w-md font-medium leading-relaxed mb-10">
-                    — I'm Yogeshwar, a PhD scholar @ NDSU focusing on environmental & conservation sciences.
-                </p>
-                
-                <div class="flex items-center space-x-6">
-                    <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Scroll down ↓</p>
-                </div>
+      {/* Hero Section */}
+      <header id="about" className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="grid lg:grid-cols-12 gap-12 items-end">
+            <div className="lg:col-span-9">
+              <div className="flex items-center gap-4 mb-10">
+                <span className="text-[10px] font-bold text-[#2D6A4F] uppercase tracking-[0.2em]">Growth • Resilience • Balance</span>
+                <div className="h-px flex-1 bg-[#D1E7E0]"></div>
+              </div>
+              <h1 className="text-6xl md:text-[8.5rem] font-medium leading-[0.85] tracking-tighter mb-12 font-['Cormorant_Garamond',serif]">
+                Psychological <br /> <span className="italic font-light text-[#2D6A4F]">Architecture.</span>
+              </h1>
+              <p className="text-xl md:text-3xl text-stone-600 font-light leading-relaxed max-w-3xl">
+                A scientific approach to behavioral transformation. Designing bespoke strategies for <span className="text-[#1B4332] font-normal">sustainable</span> relationship dynamics and healthy clinical ecosystems.
+              </p>
             </div>
-
-            <div class="profile-img-container">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" 
-                     alt="Yogeshwar Vats" 
-                     class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700">
-            </div>
-            
+          </div>
         </div>
-    </header>
+      </header>
 
-    <!-- Publications & Patent -->
-    <section id="publications" class="py-32 px-8 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-slate-400 mb-12">Intellectual Property & Publications</h2>
-            <div class="grid lg:grid-cols-2 gap-12 items-start">
-                <!-- Golden Patent Card -->
-                <div class="p-12 rounded-3xl patent-card relative overflow-hidden shadow-sm">
-                    <div class="relative z-10">
-                        <span class="gold-tag px-3 py-1 rounded text-[10px] font-black uppercase tracking-widest mb-6 inline-block">Patent Granted</span>
-                        <h3 class="text-3xl font-bold mb-4 leading-tight text-amber-950">Gluten-Free Food Products: Millet & Fish Scale Powder</h3>
-                        <p class="text-amber-800/80 mb-8 font-medium">Application No. 202431062206 — Granted August 16, 2024</p>
-                        <div class="flex items-center space-x-2 text-amber-700 font-bold text-xs uppercase">
-                            <i class="fas fa-certificate"></i>
-                            <span>Official Intellectual Property Rights</span>
-                        </div>
-                    </div>
-                    <i class="fas fa-medal absolute -right-4 -bottom-4 text-9xl gold-icon transform -rotate-12"></i>
-                </div>
-                
-                <!-- Journal List -->
-                <div class="space-y-10">
-                    <div>
-                        <h4 class="font-bold text-xl mb-3 flex items-center">
-                            <span class="text-teal-600 mr-3">01.</span>
-                            Trends in Food Science & Technology
-                        </h4>
-                        <p class="text-slate-500 leading-relaxed italic">"Muscle tissue characteristics of cultured meat: A comparative analysis of production methods and consumer acceptance."</p>
-                        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mt-2">Vats, Y., et al. (2025)</p>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-xl mb-3 flex items-center">
-                            <span class="text-teal-600 mr-3">02.</span>
-                            Discover Sustainability
-                        </h4>
-                        <p class="text-slate-500 leading-relaxed italic">"Comparative yield, structure, and UV-blocking performance of Klason lignin from bio-residues."</p>
-                        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mt-2">Vats, Y., et al. (2025)</p>
-                    </div>
-                </div>
-            </div>
+      {/* Stats Bar */}
+      <section className="py-20 border-y border-[#D1E7E0] bg-[#dcf2ed]">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
+            {profile.stats.map((stat, i) => (
+              <div key={i} className="space-y-1">
+                <p className="text-4xl font-['Cormorant_Garamond',serif] italic text-[#1B4332]">{stat.value}</p>
+                <p className="text-[9px] font-bold text-[#2D6A4F] uppercase tracking-[0.2em]">{stat.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Education & Stats -->
-    <section class="py-32 px-8 bg-slate-50">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-bold mb-16 tracking-tight">Academic Journey</h2>
-            <div class="grid lg:grid-cols-3 gap-12">
-                <div class="space-y-4">
-                    <span class="text-xs font-bold text-teal-600 uppercase">2025 – Present</span>
-                    <h3 class="text-xl font-bold">Ph.D. Environmental Science</h3>
-                    <p class="text-slate-500 text-sm">North Dakota State University, USA. Focus on soil-salinity and bio-residue valorization.</p>
-                </div>
-                <div class="space-y-4 opacity-60">
-                    <span class="text-xs font-bold text-slate-400 uppercase">2021 – 2023</span>
-                    <h3 class="text-xl font-bold">M.Sc. Environmental Science</h3>
-                    <p class="text-slate-500 text-sm">Central University of Haryana, India. Specializing in conservation techniques.</p>
-                </div>
-                <div class="space-y-4 opacity-60">
-                    <span class="text-xs font-bold text-slate-400 uppercase">2017 – 2020</span>
-                    <h3 class="text-xl font-bold">B.Sc. Environmental Science</h3>
-                    <p class="text-slate-500 text-sm">Dev Sanskriti Vishwavidyalaya, Haridwar, India.</p>
-                </div>
+      {/* Methodology */}
+      <section className="py-32 px-6 md:px-12 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-24 items-center">
+            <div>
+              <h2 className="text-xs font-bold text-[#2D6A4F] uppercase tracking-[0.4em] mb-8">Professional Philosophy</h2>
+              <h3 className="text-5xl font-medium leading-tight mb-8 font-['Cormorant_Garamond',serif]">Empowerment Through Evidence.</h3>
+              <p className="text-stone-600 leading-relaxed mb-6">
+                My practice is built on the intersection of deep scientific understanding and clinical operations. I translate complex human psychology into actionable, outcome-driven sessions and clinical workflows.
+              </p>
+              <p className="text-stone-600 leading-relaxed italic">
+                I leverage indigenous therapeutics and modern psychometric analysis to provide deeper insight into behavioral transformation.
+              </p>
             </div>
+            <div className="grid gap-4">
+              <div className="p-10 bg-[#e1f0d7] rounded-3xl">
+                <ShieldCheck className="text-[#1B4332] mb-4" size={32} />
+                <h4 className="text-2xl font-semibold mb-3 text-[#1B4332] font-['Cormorant_Garamond',serif]">Clinical Excellence</h4>
+                <p className="text-sm text-[#1B4332]/80 leading-relaxed">Maintaining the highest standards of patient safety and therapeutic efficacy through structured operations.</p>
+              </div>
+              <div className="p-10 bg-stone-50 border border-[#D1E7E0] rounded-3xl">
+                <Zap className="text-[#2D6A4F] mb-4" size={32} />
+                <h4 className="text-2xl font-semibold mb-3 text-[#1B4332] font-['Cormorant_Garamond',serif]">Outcome Driven</h4>
+                <p className="text-sm text-stone-500 leading-relaxed">Focusing on measurable psychological growth through verified behavioral intervention strategies.</p>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Research Experience -->
-    <section id="research" class="py-32 px-8">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-slate-400 mb-4">Research Portfolio</h2>
-            <div class="grid md:grid-cols-2 gap-16">
-                <!-- Project 1 -->
-                <div class="group">
-                    <div class="aspect-video overflow-hidden rounded-2xl bg-slate-100 mb-8">
-                        <img src="https://images.unsplash.com/photo-1599153066743-08810dc8a419?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Soil-Salinity Mitigation</h3>
-                    <p class="text-slate-500 leading-relaxed mb-6">Developing sustainable frameworks for cold-region agricultural salinity management in the Northern USA.</p>
-                    <a href="#" class="text-xs font-bold uppercase border-b border-black pb-1">View Details</a>
+      {/* Experience Track */}
+      <section id="experience" className="py-32 bg-[#1c1917] text-stone-400 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-baseline mb-20">
+            <h2 className="text-4xl font-medium text-white tracking-tight font-['Cormorant_Garamond',serif]">Professional Track</h2>
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#2D6A4F]">Verified Excellence</span>
+          </div>
+          
+          <div className="space-y-2">
+            {clinicalExperience.map((exp, i) => (
+              <div key={i} className="group py-12 border-t border-stone-800 grid md:grid-cols-12 gap-8 items-start hover:bg-stone-800/30 px-6 transition-all rounded-xl">
+                <div className="md:col-span-3 text-[#2D6A4F] font-medium text-xl italic font-['Cormorant_Garamond',serif]">{exp.date}</div>
+                <div className="md:col-span-6">
+                  <h3 className="text-white text-2xl font-bold mb-2 tracking-tight">{exp.role}</h3>
+                  <p className="text-[#2D6A4F] uppercase text-[10px] font-bold tracking-[0.2em] mb-6">{exp.org}</p>
+                  <p className="text-sm leading-relaxed">{exp.desc}</p>
                 </div>
-
-                <!-- Project 2 -->
-                <div class="group">
-                    <div class="aspect-video overflow-hidden rounded-2xl bg-slate-100 mb-8">
-                        <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Sustainable Lab-Grown Meat</h3>
-                    <p class="text-slate-500 leading-relaxed mb-6">Investigating consumer acceptance and bio-feasibility of cultured meat in the Indian market during IIT Fellowship.</p>
-                    <a href="#" class="text-xs font-bold uppercase border-b border-black pb-1">View Details</a>
+                <div className="md:col-span-3 md:text-right">
+                  <p className="text-[10px] font-bold text-stone-600 uppercase tracking-[0.2em]">Clinical & Coaching</p>
                 </div>
-            </div>
+              </div>
+            ))}
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Gallery -->
-    <section id="gallery" class="py-32 px-8 bg-black text-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-baseline mb-16">
-                <h2 class="text-4xl font-bold tracking-tight mb-4 md:mb-0">Fieldwork Gallery</h2>
-                <p class="text-slate-400 max-w-xs text-sm">Visual documentation of research in lab and across field stations.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="gallery-item group h-[400px]">
-                    <img src="https://images.unsplash.com/photo-1516216628859-9bccecad13ca?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500">
-                    <div class="gallery-overlay">
-                        <p class="text-xs uppercase tracking-widest font-bold">Conference</p>
-                        <h4 class="text-xl font-bold">AGU25 Poster</h4>
-                    </div>
+      {/* Services Section */}
+      <section id="specializations" className="py-32 px-6 md:px-12 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-24">
+            <h2 className="text-5xl font-medium mb-6 font-['Cormorant_Garamond',serif]">Wellness Ecosystems</h2>
+            <p className="text-stone-500 max-w-2xl mx-auto italic font-['Cormorant_Garamond',serif] text-xl">"Nurturing potential through intentional behavioral design."</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {specializations.map((spec, i) => (
+              <div key={i} className={`p-10 rounded-[2rem] hover:shadow-xl transition-all duration-500 flex flex-col justify-between min-h-[300px] ${spec.color}`}>
+                <div>
+                  <h4 className="text-2xl font-bold mb-4 font-['Cormorant_Garamond',serif] leading-tight">{spec.title}</h4>
+                  <p className="text-xs opacity-80 leading-relaxed">{spec.desc}</p>
                 </div>
-                <div class="gallery-item group h-[400px] md:mt-12">
-                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500">
-                    <div class="gallery-overlay">
-                        <p class="text-xs uppercase tracking-widest font-bold">Laboratory</p>
-                        <h4 class="text-xl font-bold">Bio-Valorization</h4>
-                    </div>
+                <ArrowUpRight size={20} className="self-end opacity-40" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Research Section */}
+      <section id="research" className="py-32 px-6 md:px-12 bg-[#F0F9F7]">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-16">Academic Contributions</h2>
+          <div className="grid lg:grid-cols-12 gap-16">
+            <div className="lg:col-span-7 space-y-12">
+              {publications.map((pub, i) => (
+                <div key={i} className="group border-b border-[#D1E7E0] pb-10 last:border-0">
+                  <h4 className="text-2xl font-bold mb-4 font-['Cormorant_Garamond',serif] group-hover:text-[#2D6A4F] transition-colors">
+                    {pub.title}
+                  </h4>
+                  <p className="text-stone-500 text-sm italic mb-6">"{pub.details}"</p>
+                  {pub.link && (
+                    <a href={pub.link} target="_blank" className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#2D6A4F] group/link">
+                      View Publication <ExternalLink size={12} className="group-hover/link:translate-x-1 transition-transform" />
+                    </a>
+                  )}
                 </div>
-                <div class="gallery-item group h-[400px]">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500">
-                    <div class="gallery-overlay">
-                        <p class="text-xs uppercase tracking-widest font-bold">Fieldwork</p>
-                        <h4 class="text-xl font-bold">Sample Collection</h4>
-                    </div>
-                </div>
+              ))}
             </div>
-        </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills" class="py-32 px-8 bg-slate-50">
-        <div class="max-w-7xl mx-auto flex flex-wrap gap-4 justify-center">
-            <span class="skill-chip px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest bg-white">R Studio</span>
-            <span class="skill-chip px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest bg-white">SWAT</span>
-            <span class="skill-chip px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest bg-white">ArcGIS</span>
-            <span class="skill-chip px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest bg-white">3D Bioprinting</span>
-            <span class="skill-chip px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest bg-white">Python</span>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-32 px-8 border-t border-slate-100">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-8 md:mb-0">
-                <span class="font-black text-2xl tracking-tighter uppercase">Y.Vats</span>
-                <p class="text-slate-400 text-xs mt-2 font-medium">NDSU Environmental Science Scholar</p>
+            <div className="lg:col-span-5 bg-white p-12 rounded-[3rem] border border-[#D1E7E0] shadow-sm flex flex-col justify-center text-center">
+               <Award className="mx-auto text-[#2D6A4F] mb-6" size={48} />
+               <h3 className="text-2xl font-bold mb-2 font-['Cormorant_Garamond',serif]">Professional Honors</h3>
+               <p className="text-sm text-stone-400 mb-8">State Elocution Champion & Martial Arts Gold Medalist</p>
+               <div className="h-px w-12 bg-[#D1E7E0] mx-auto mb-8"></div>
+               <p className="text-xs leading-relaxed text-stone-500 italic">
+                 "Applying the discipline of competitive athletics and the eloquence of elocution to therapeutic practice."
+               </p>
             </div>
-            <div class="flex space-x-8">
-                <a href="#" class="text-slate-400 hover:text-black transition"><i class="fab fa-linkedin-in"></i></a>
-                <a href="mailto:yogeshwar.vats@ndsu.edu" class="text-slate-400 hover:text-black transition"><i class="far fa-envelope"></i></a>
-            </div>
+          </div>
         </div>
-    </footer>
+      </section>
 
-</body>
-</html>
+      {/* Contact */}
+      <section id="contact" className="py-32 bg-[#dcf2ed] px-6 md:px-12 border-t border-[#D1E7E0]">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-6xl md:text-8xl font-medium tracking-tighter mb-12 italic text-[#1B4332] font-['Cormorant_Garamond',serif]">Let's Connect.</h2>
+          <form className="text-left grid md:grid-cols-2 gap-10" onSubmit={(e) => e.preventDefault()}>
+            <div className="space-y-3">
+              <label className="text-[10px] font-bold text-[#2D6A4F] uppercase tracking-[0.2em]">Full Name</label>
+              <input type="text" placeholder="REQUIRED" className="w-full bg-transparent border-b border-[#2D6A4F]/30 py-4 outline-none focus:border-[#2D6A4F] transition font-medium" />
+            </div>
+            <div className="space-y-3">
+              <label className="text-[10px] font-bold text-[#2D6A4F] uppercase tracking-[0.2em]">Professional Email</label>
+              <input type="email" placeholder="EMAIL@EXAMPLE.COM" className="w-full bg-transparent border-b border-[#2D6A4F]/30 py-4 outline-none focus:border-[#2D6A4F] transition font-medium" />
+            </div>
+            <button className="md:col-span-2 w-full bg-[#1B4332] text-white font-bold py-6 rounded-full text-[10px] uppercase tracking-[0.4em] hover:bg-[#2D6A4F] transition shadow-lg">
+              Initialize Request
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-16 border-t border-[#D1E7E0] px-6 md:px-12 text-center bg-white">
+        <div className="max-w-7xl mx-auto flex flex-col items-center">
+          <span className="text-sm font-bold tracking-[0.2em] uppercase text-[#1B4332]">{profile.name}</span>
+          <div className="h-px w-12 bg-[#D1E7E0] my-6"></div>
+          <p className="text-[9px] font-bold text-stone-300 uppercase tracking-[0.2em]">
+            &copy; 2026 • Actionable Psychology • MSc. Counselling Psychology
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;

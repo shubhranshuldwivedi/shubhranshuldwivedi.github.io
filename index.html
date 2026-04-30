@@ -12,34 +12,57 @@
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body { font-family: 'Inter', sans-serif; }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         html { scroll-behavior: smooth; }
-        /* Prevent layout shift before React hydration */
         #root { min-height: 100vh; }
+        
+        /* Custom animations for a professional feel */
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        // Fixed: Correctly destructure icons from the global 'lucide' object
-        // Lucide puts icons in 'lucide.icons' or as capitalized properties in the global 'lucide'
-        const Linkedin = () => <i data-lucide="linkedin"></i>;
-        const ExternalLink = () => <i data-lucide="external-link"></i>;
-        const ArrowUpRight = () => <i data-lucide="arrow-up-right"></i>;
-        const ShieldCheck = () => <i data-lucide="shield-check"></i>;
-        const Zap = () => <i data-lucide="zap"></i>;
+        // Inline SVG Icons for reliability
+        const LinkedinIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        );
+        const ExternalLinkIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        );
+        const ArrowUpRightIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        );
+        const ShieldCheckIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        );
+        const ZapIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        );
 
         const App = () => {
-            // Re-run lucide creation when component mounts
+            const [scrolled, setScrolled] = React.useState(false);
+
             React.useEffect(() => {
-                if (window.lucide) {
-                    window.lucide.createIcons();
-                }
+                const handleScroll = () => {
+                    setScrolled(window.scrollY > 50);
+                    
+                    // Simple Intersection Observer logic
+                    const elements = document.querySelectorAll('.reveal');
+                    elements.forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < window.innerHeight - 100) {
+                            el.classList.add('visible');
+                        }
+                    });
+                };
+                window.addEventListener('scroll', handleScroll);
+                handleScroll(); // Trigger on mount
+                return () => window.removeEventListener('scroll', handleScroll);
             }, []);
 
             const profile = {
@@ -55,22 +78,22 @@
 
             const specializations = [
                 { 
-                    title: "Relational Intelligence",
+                    title: "Relational Intelligence", 
                     desc: "Deciphering communication patterns and rebuilding intimacy through structured behavioral intervention.",
                     color: "bg-[#dcf2ed]"
                 },
                 { 
-                    title: "Circadian Wellness",
+                    title: "Circadian Wellness", 
                     desc: "Sleep hygiene protocols designed as the fundamental pillar for cognitive and emotional resilience.",
                     color: "bg-[#e1f0d7]"
                 },
                 { 
-                    title: "Indigenous Therapeutics",
+                    title: "Indigenous Therapeutics", 
                     desc: "Blending traditional Indian psychology with modern CBT for anxiety management.",
                     color: "bg-white border border-[#D1E7E0]"
                 },
                 { 
-                    title: "Corporate Wellness",
+                    title: "Corporate Wellness", 
                     desc: "Bespoke strategies for organizational health and executive resilience.",
                     color: "bg-[#2D6A4F] text-white"
                 }
@@ -116,8 +139,8 @@
             return (
                 <div className="bg-[#F0F9F7] text-[#1c1917] min-h-screen">
                     {/* Navigation */}
-                    <nav className="fixed w-full z-50 bg-[#F0F9F7]/85 backdrop-blur-xl border-b border-[#D1E7E0]/50">
-                        <div className="max-w-7xl mx-auto px-6 md:px-12 py-6 flex justify-between items-center">
+                    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#F0F9F7]/95 shadow-sm py-4' : 'bg-transparent py-6'}`}>
+                        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
                             <div className="flex flex-col">
                                 <span className="text-xl font-medium tracking-tighter uppercase">{profile.name}</span>
                                 <span className="text-[9px] font-bold tracking-[0.2em] text-[#2D6A4F] uppercase mt-1 leading-none">
@@ -132,7 +155,7 @@
                             </div>
                             <div className="flex items-center gap-4">
                                 <a href="https://www.linkedin.com/in/shubhranshul-dwivedi/" target="_blank" className="w-10 h-10 flex items-center justify-center rounded-full border border-[#D1E7E0] text-[#2D6A4F] hover:bg-[#D1E7E0] transition">
-                                    <Linkedin />
+                                    <LinkedinIcon />
                                 </a>
                                 <a href="#contact" className="hidden sm:block text-[10px] font-bold uppercase tracking-[0.2em] bg-[#e3f6cc] text-[#1B4332] px-8 py-3 rounded-full hover:brightness-95 transition shadow-sm border border-[#D1E7E0]">
                                     Book Session
@@ -145,7 +168,7 @@
                     <header id="about" className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20">
                         <div className="max-w-7xl mx-auto w-full">
                             <div className="grid lg:grid-cols-12 gap-12 items-end">
-                                <div className="lg:col-span-9">
+                                <div className="lg:col-span-12 reveal">
                                     <div className="flex items-center gap-4 mb-10">
                                         <span className="text-[10px] font-bold text-[#2D6A4F] uppercase tracking-[0.2em]">Growth • Resilience • Balance</span>
                                         <div className="h-px flex-1 bg-[#D1E7E0]"></div>
@@ -153,8 +176,8 @@
                                     <h1 className="text-6xl md:text-[8.5rem] font-medium leading-[0.85] tracking-tighter mb-12 font-serif">
                                         Psychological <br /> <span className="italic font-light text-[#2D6A4F]">Architecture.</span>
                                     </h1>
-                                    <p className="text-xl md:text-3xl text-stone-600 font-light leading-relaxed max-w-3xl">
-                                        A scientific approach to behavioral transformation. Designing bespoke strategies for <span className="text-[#1B4332] font-normal">sustainable</span> relationship dynamics and healthy clinical ecosystems.
+                                    <p className="text-xl md:text-3xl text-stone-600 font-light leading-relaxed max-w-4xl">
+                                        A scientific approach to behavioral transformation. Designing bespoke strategies for <span className="text-[#1B4332] font-normal underline decoration-[#D1E7E0] underline-offset-8">sustainable</span> relationship dynamics and healthy clinical ecosystems.
                                     </p>
                                 </div>
                             </div>
@@ -166,7 +189,7 @@
                         <div className="max-w-7xl mx-auto px-6 md:px-12">
                             <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
                                 {profile.stats.map((stat, i) => (
-                                    <div key={i} className="space-y-1">
+                                    <div key={i} className="space-y-1 reveal">
                                         <p className="text-4xl font-serif italic text-[#1B4332]">{stat.value}</p>
                                         <p className="text-[9px] font-bold text-[#2D6A4F] uppercase tracking-[0.2em]">{stat.label}</p>
                                     </div>
@@ -176,10 +199,10 @@
                     </section>
 
                     {/* Methodology */}
-                    <section className="py-32 px-6 md:px-12 bg-white">
+                    <section className="py-32 px-6 md:px-12 bg-white overflow-hidden">
                         <div className="max-w-7xl mx-auto">
                             <div className="grid lg:grid-cols-2 gap-24 items-center">
-                                <div>
+                                <div className="reveal">
                                     <h2 className="text-xs font-bold text-[#2D6A4F] uppercase tracking-[0.4em] mb-8">Professional Philosophy</h2>
                                     <h3 className="text-5xl font-medium leading-tight mb-8 font-serif">Empowerment Through Evidence.</h3>
                                     <p className="text-stone-600 leading-relaxed mb-6">
@@ -189,14 +212,14 @@
                                         I leverage indigenous therapeutics and modern psychometric analysis to provide deeper insight into behavioral transformation.
                                     </p>
                                 </div>
-                                <div className="grid gap-4">
-                                    <div className="p-10 bg-[#e1f0d7] rounded-3xl">
-                                        <div className="text-[#1B4332] mb-4 scale-150 transform origin-left"><ShieldCheck /></div>
+                                <div className="grid gap-4 reveal">
+                                    <div className="p-10 bg-[#e1f0d7] rounded-3xl group hover:-translate-y-1 transition-all duration-300">
+                                        <div className="text-[#1B4332] mb-6"><ShieldCheckIcon /></div>
                                         <h4 className="text-2xl font-semibold mb-3 text-[#1B4332] font-serif">Clinical Excellence</h4>
                                         <p className="text-sm text-[#1B4332]/80 leading-relaxed">Maintaining the highest standards of patient safety and therapeutic efficacy through structured operations.</p>
                                     </div>
-                                    <div className="p-10 bg-stone-50 border border-[#D1E7E0] rounded-3xl">
-                                        <div className="text-[#2D6A4F] mb-4 scale-150 transform origin-left"><Zap /></div>
+                                    <div className="p-10 bg-stone-50 border border-[#D1E7E0] rounded-3xl group hover:-translate-y-1 transition-all duration-300">
+                                        <div className="text-[#2D6A4F] mb-6"><ZapIcon /></div>
                                         <h4 className="text-2xl font-semibold mb-3 text-[#1B4332] font-serif">Outcome Driven</h4>
                                         <p className="text-sm text-stone-500 leading-relaxed">Focusing on measurable psychological growth through verified behavioral intervention strategies.</p>
                                     </div>
@@ -208,14 +231,14 @@
                     {/* Experience Track */}
                     <section id="experience" className="py-32 bg-[#1c1917] text-stone-400 px-6 md:px-12">
                         <div className="max-w-7xl mx-auto">
-                            <div className="flex justify-between items-baseline mb-20">
+                            <div className="flex flex-col md:flex-row justify-between items-baseline mb-20 gap-4 reveal">
                                 <h2 className="text-4xl font-medium text-white tracking-tight font-serif">Professional Track</h2>
                                 <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#2D6A4F]">Verified Excellence</span>
                             </div>
                             
                             <div className="space-y-2">
                                 {clinicalExperience.map((exp, i) => (
-                                    <div key={i} className="group py-12 border-t border-stone-800 grid md:grid-cols-12 gap-8 items-start hover:bg-stone-800/30 px-6 transition-all rounded-xl">
+                                    <div key={i} className="group py-12 border-t border-stone-800 grid md:grid-cols-12 gap-8 items-start hover:bg-stone-800/30 px-6 transition-all rounded-xl reveal">
                                         <div className="md:col-span-3 text-[#2D6A4F] font-medium text-xl italic font-serif">{exp.date}</div>
                                         <div className="md:col-span-6">
                                             <h3 className="text-white text-2xl font-bold mb-2 tracking-tight">{exp.role}</h3>
@@ -234,19 +257,21 @@
                     {/* Services Section */}
                     <section id="specializations" className="py-32 px-6 md:px-12 bg-white">
                         <div className="max-w-7xl mx-auto">
-                            <div className="text-center mb-24">
+                            <div className="text-center mb-24 reveal">
                                 <h2 className="text-5xl font-medium mb-6 font-serif">Wellness Ecosystems</h2>
                                 <p className="text-stone-500 max-w-2xl mx-auto italic font-serif text-xl">"Nurturing potential through intentional behavioral design."</p>
                             </div>
                             
                             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                                 {specializations.map((spec, i) => (
-                                    <div key={i} className={`p-10 rounded-[2rem] hover:shadow-xl transition-all duration-500 flex flex-col justify-between min-h-[300px] ${spec.color}`}>
+                                    <div key={i} className={`p-10 rounded-[2rem] hover:shadow-xl transition-all duration-500 flex flex-col justify-between min-h-[340px] reveal ${spec.color}`}>
                                         <div>
-                                            <h4 className="text-2xl font-bold mb-4 font-serif leading-tight">{spec.title}</h4>
+                                            <h4 className="text-2xl font-bold mb-6 font-serif leading-tight">{spec.title}</h4>
                                             <p className="text-xs opacity-80 leading-relaxed">{spec.desc}</p>
                                         </div>
-                                        <div className="self-end opacity-40"><ArrowUpRight /></div>
+                                        <div className="self-end opacity-40 group-hover:opacity-100 transition-opacity">
+                                            <ArrowUpRightIcon />
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -256,27 +281,32 @@
                     {/* Research Section */}
                     <section id="research" className="py-32 px-6 md:px-12 bg-[#F0F9F7]">
                         <div className="max-w-7xl mx-auto">
-                            <h2 className="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-16">Academic Contributions</h2>
+                            <div className="reveal mb-16">
+                                <h2 className="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-4">Academic Contributions</h2>
+                                <div className="h-1 w-12 bg-[#2D6A4F]"></div>
+                            </div>
                             <div className="max-w-4xl mx-auto space-y-12">
                                 {publications.map((pub, i) => (
-                                    <div key={i} className="group border-b border-[#D1E7E0] pb-10 last:border-0">
+                                    <div key={i} className="group border-b border-[#D1E7E0] pb-10 last:border-0 reveal">
                                         <h4 className="text-2xl font-bold mb-4 font-serif group-hover:text-[#2D6A4F] transition-colors">
                                             {pub.title}
                                         </h4>
                                         <p className="text-stone-500 text-sm italic mb-6">"{pub.details}"</p>
                                         {pub.link && (
                                             <a href={pub.link} target="_blank" className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#2D6A4F] group/link">
-                                                View Publication <span className="group-hover/link:translate-x-1 transition-transform"><ExternalLink /></span>
+                                                View Publication <span className="group-hover/link:translate-x-1 transition-transform"><ExternalLinkIcon /></span>
                                             </a>
                                         )}
                                     </div>
                                 ))}
                             </div>
                         </div>
-                    {/* Initiatives & Assets Section */}
+                    </section>
+
+                    {/* Initiatives */}
                     <section id="initiatives" className="py-32 px-6 md:px-12 bg-white">
                         <div className="max-w-7xl mx-auto">
-                            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal">
                                 <div>
                                     <h2 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#2D6A4F] mb-4">Strategic Ventures</h2>
                                     <h3 className="text-5xl font-medium font-serif">Scaling Cognitive Infrastructure.</h3>
@@ -287,11 +317,10 @@
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-8">
-                                {/* PsychEngine - Current Startup */}
-                                <div className="group p-12 bg-stone-50 border border-[#D1E7E0] rounded-[3rem] hover:border-[#2D6A4F] transition-all duration-500">
+                                <div className="group p-12 bg-stone-50 border border-[#D1E7E0] rounded-[3rem] hover:border-[#2D6A4F] transition-all duration-500 reveal">
                                     <div className="flex justify-between items-start mb-8">
                                         <div className="bg-[#2D6A4F] text-white p-3 rounded-2xl">
-                                            <Zap />
+                                            <ZapIcon />
                                         </div>
                                         <span className="text-[10px] font-bold text-[#2D6A4F] bg-[#e1f0d7] px-4 py-1 rounded-full uppercase tracking-widest">In Development</span>
                                     </div>
@@ -305,12 +334,11 @@
                                     </div>
                                 </div>
 
-                                {/* ExamCortex - Link to local file */}
-                                <a href="Examcortex.html" className="group p-12 bg-[#1B4332] text-white rounded-[3rem] hover:shadow-2xl transition-all duration-500 block relative overflow-hidden">
+                                <div className="group p-12 bg-[#1B4332] text-white rounded-[3rem] hover:shadow-2xl transition-all duration-500 block relative overflow-hidden reveal">
                                     <div className="relative z-10">
                                         <div className="flex justify-between items-start mb-8">
                                             <div className="bg-white/10 backdrop-blur-md p-3 rounded-2xl">
-                                                <ExternalLink />
+                                                <ExternalLinkIcon />
                                             </div>
                                             <span className="text-[10px] font-bold text-[#e1f0d7] border border-[#e1f0d7]/30 px-4 py-1 rounded-full uppercase tracking-widest">Live Prototype</span>
                                         </div>
@@ -319,12 +347,11 @@
                                             The foundational logic-mesh for competitive exam preparation. View the interface design and cognitive load balancing protocols.
                                         </p>
                                         <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] group-hover:gap-4 transition-all">
-                                            Explore Framework <ArrowUpRight />
+                                            Explore Framework <ArrowUpRightIcon />
                                         </div>
                                     </div>
-                                    {/* Decorative element */}
                                     <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl group-hover:bg-white/10 transition-all"></div>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -332,17 +359,19 @@
                     {/* Contact */}
                     <section id="contact" className="py-32 bg-[#dcf2ed] px-6 md:px-12 border-t border-[#D1E7E0]">
                         <div className="max-w-4xl mx-auto text-center">
-                            <h2 className="text-6xl md:text-8xl font-medium tracking-tighter mb-12 italic text-[#1B4332] font-serif">Let's Connect.</h2>
-                            <form className="text-left grid md:grid-cols-2 gap-10" onSubmit={(e) => e.preventDefault()}>
+                            <div className="reveal">
+                                <h2 className="text-6xl md:text-8xl font-medium tracking-tighter mb-12 italic text-[#1B4332] font-serif">Let's Connect.</h2>
+                            </div>
+                            <form className="text-left grid md:grid-cols-2 gap-10 reveal" onSubmit={(e) => e.preventDefault()}>
                                 <div className="space-y-3">
                                     <label className="text-[10px] font-bold text-[#2D6A4F] uppercase tracking-[0.2em]">Full Name</label>
-                                    <input type="text" placeholder="REQUIRED" className="w-full bg-transparent border-b border-[#2D6A4F]/30 py-4 outline-none focus:border-[#2D6A4F] transition font-medium" />
+                                    <input type="text" placeholder="REQUIRED" className="w-full bg-transparent border-b border-[#2D6A4F]/30 py-4 outline-none focus:border-[#2D6A4F] transition font-medium placeholder:text-stone-400" />
                                 </div>
                                 <div className="space-y-3">
                                     <label className="text-[10px] font-bold text-[#2D6A4F] uppercase tracking-[0.2em]">Professional Email</label>
-                                    <input type="email" placeholder="EMAIL@EXAMPLE.COM" className="w-full bg-transparent border-b border-[#2D6A4F]/30 py-4 outline-none focus:border-[#2D6A4F] transition font-medium" />
+                                    <input type="email" placeholder="EMAIL@EXAMPLE.COM" className="w-full bg-transparent border-b border-[#2D6A4F]/30 py-4 outline-none focus:border-[#2D6A4F] transition font-medium placeholder:text-stone-400" />
                                 </div>
-                                <button className="md:col-span-2 w-full bg-[#1B4332] text-white font-bold py-6 rounded-full text-[10px] uppercase tracking-[0.4em] hover:bg-[#2D6A4F] transition shadow-lg">
+                                <button className="md:col-span-2 w-full bg-[#1B4332] text-white font-bold py-6 rounded-full text-[10px] uppercase tracking-[0.4em] hover:bg-[#2D6A4F] transition shadow-lg mt-8">
                                     Initialize Request
                                 </button>
                             </form>
@@ -368,6 +397,3 @@
     </script>
 </body>
 </html>
-
-
-
